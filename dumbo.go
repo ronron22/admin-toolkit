@@ -2,8 +2,9 @@ package main
 
 import (
 	"fmt"
+	"github.com/mackerelio/go-osstat/memory"
 	"github.com/prometheus/procfs"
-	//"log"
+	"os"
 	"regexp"
 	"time"
 )
@@ -13,6 +14,12 @@ const (
 )
 
 func main() {
+
+	memory, err := memory.Get()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "%s\n", err)
+		os.Exit(2)
+	}
 
 	c, _ := procfs.AllProcs()
 
@@ -54,6 +61,8 @@ func main() {
 		total_vms = total_vms + vm
 	}
 	fmt.Printf("--- digest ---\n")
+	fmt.Printf("memory total: %d Mo\n", ((memory.Total / 1024) / 1034))
+	fmt.Printf("memory free: %d Mo\n", ((memory.Free / 1024) / 1024))
 	fmt.Printf("[1] there %d processus %s \n", counter, match_pattern)
 	fmt.Printf("[2] with a total memory of %d Mo\n", (total_vms / 1024 / 1024))
 	switch {
