@@ -6,6 +6,8 @@ Files
 |-- chaussette.sh 
 |-- crocodile.sh
 |-- calumet.sh
+|-- dumbo
+|-- dumbo.go
 `-- README.md
 ```
 
@@ -95,3 +97,55 @@ done
 ```
 
 je bloque les 5 ip les plus représentés durant une heure.
+
+## dumbo
+
+*dumbo* permet d'obtenir quelques stats sur les processus php présents.
+
+* temps cpu consommé
+* taille de la mémoire virtuelle
+* taille de la mémoire résidente
+* taille de la mémoire d'échange occupée
+* temps écoulé depuis la création du processus
+
+A la fin, il ajoute un résumé fort utile avec :
+* le nombre de processus
+* la taille RSS cumulée pour tous les processus
+* la taille sur le fichier d'échange cumulée pour tous les processus
+* temps écoulé depuis la création du dernier processus
+
+
+```bash
+ ~# ./dumbo
+Name:        php-fpm7.3, PID: 23876
+cpu time:    0.670000s
+vsize:       197084B
+rss:         16236B
+swapped      0B
+Start since: 492 minute(s)
+
+Name:        php-fpm7.3, PID: 23877
+cpu time:    0.000000s
+vsize:       197368B
+rss:         7948B
+swapped      0B
+Start since: 492 minute(s)
+
+Name:        php-fpm7.3, PID: 23878
+cpu time:    0.000000s
+vsize:       197368B
+rss:         7948B
+swapped      0B
+Start since: 492 minute(s)
+
+--- digest ---
+memory total: 7827 Mo
+memory free: 206 Mo
+[1] there 3 processus php
+[2] with a total memory of 31 Mo (rss)
+[3] with a total of 0 Ko swapped
+[4] started since 8 h
+--- end ---
+```
+
+Le source de dumbo est dumbo.go
