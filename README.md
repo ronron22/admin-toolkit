@@ -102,6 +102,8 @@ je bloque les 5 ip les plus représentés durant une heure.
 
 *dumbo* permet d'obtenir quelques stats sur les processus php présents.
 
+*dumbo* est écrit en *go*, son source est *dumbo.go* 
+
 * temps cpu consommé
 * taille de la mémoire virtuelle
 * taille de la mémoire résidente
@@ -147,5 +149,3 @@ memory free: 206 Mo
 [4] started since 8 h
 --- end ---
 ```
-
-Le source de dumbo est dumbo.go
